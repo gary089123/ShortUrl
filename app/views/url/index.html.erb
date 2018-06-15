@@ -1,0 +1,7 @@
+<%=form_for @url, :url => {:controller => 'url',:action => 'create'} do |f|%>
+  <%= f.label :origin ,'原網址' %>
+  <%= f.text_field :origin %>
+  <%= f.label :redirect ,'短網址' %>
+  <%= f.text_field :redirect %>
+  <%= f.submit %>
+<% end %>
