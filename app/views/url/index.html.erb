@@ -15,9 +15,9 @@
       <h3 class="masthead-brand">Little's ShortUrl</h3>
 
       <nav class="nav nav-masthead justify-content-center">
-        <a class="nav-link active" href="#">Home</a>
-        <a class="nav-link" href="#">Features</a>
-        <a class="nav-link" href="#">Contact</a>
+        <a class="nav-link active" href="#">短網址</a>
+        <a class="nav-link" href="#">說明</a>
+        <a class="nav-link" href="#">聯絡我</a>
       </nav>
     </div>
   </header>
@@ -29,10 +29,7 @@
 
         <%= f.text_field :origin, :class => "form-control", :style => "text-align:center;", placeholder: "Example : https://url.little.tw" %>
       </div>
-      <div class="form-group">
-        <%= f.label :redirect, '短網址' %>
-        <%= f.text_field :redirect %>
-      </div>
+
       <div class="form-group">
         <%= f.submit '產生短網址', :class => 'btn btn-lg btn-secondary' %>
       </div>

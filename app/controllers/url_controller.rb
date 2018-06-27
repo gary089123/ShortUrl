@@ -19,21 +19,21 @@ class UrlController < ApplicationController
       exist = Url.find_by origin: @url.origin
 
       if exist == nil
-        
+
         if @url.redirect == ""
           @url.redirect = SecureRandom.hex(4)
         end
 
         if @url.save
             p @url.redirect
-            flash[:success] = '成功產生網址 https://little.tw/' + @url.redirect
+            flash[:success] = '成功產生網址 http://little.tw/' + @url.redirect
             redirect_to(:action => 'index')
         end
 
 
       else
         p exist
-        flash[:notice] = '已存在短網址 https://little.tw/' + exist.redirect
+        flash[:notice] = '已存在短網址 http://little.tw/' + exist.redirect
         redirect_to(:action => 'index')
 
       end
