@@ -24,7 +24,7 @@
 
   <main role="main" class="inner cover">
     <h1 class="cover-heading">小小的短網址 (´･ω･`)</h1>
-    <%= form_for @url, :url => {:controller => 'url', :action => 'create'} do |f| %>
+    <%= form_for @url, :url => {:controller => 'urls', :action => 'create'} do |f| %>
       <div class="form-group">
 
         <%= f.text_field :origin, :class => "form-control", :style => "text-align:center;", placeholder: "Example : https://url.little.tw" %>
