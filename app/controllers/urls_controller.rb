@@ -1,7 +1,7 @@
 require 'securerandom'
 require 'net/http'
 
-class UrlController < ApplicationController
+class UrlsController < ApplicationController
 
   def index
     @url = Url.new

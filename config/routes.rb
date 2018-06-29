@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "url#index"
-  post '/url',to: 'url#create'
-  get '/:url' ,to: 'url#redirect'
+  root "urls#index"
+  post '/url',to: 'urls#create'
+  get '/:url' ,to: 'urls#redirect'
 end
