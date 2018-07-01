@@ -20,7 +20,7 @@ class UrlsController < ApplicationController
 
       if exist == nil
 
-        if @url.redirect == ""
+        if @url.redirect == nil
           @url.redirect = SecureRandom.hex(4)
         end
 
