@@ -48,7 +48,13 @@ class UrlsController < ApplicationController
   def redirect
     redirect = params.fetch(:url)
     url = Url.find_by redirect: redirect
-    redirect_to url.origin
+    if url != nil
+      redirect_to url.origin
+    else
+      flash[:error] = '不存在的短網址'
+      redirect_to(:action => 'index')
+    end
+
 
   end
 
