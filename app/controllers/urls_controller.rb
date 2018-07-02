@@ -1,5 +1,5 @@
 require 'securerandom'
-require 'net/http'
+require 'rest-client'
 
 class UrlsController < ApplicationController
 
@@ -10,33 +10,50 @@ class UrlsController < ApplicationController
   def create
 
     @url = Url.new(url_params)
+
     if @url.origin == ""
       flash[:error] = '請填入要轉址的url'
       redirect_to(:action => 'index')
+
+    elsif ! (@url.origin =~ /^https?:\/\/(.*)/)
+
+      flash[:error] = ' 錯誤url格式'
+      redirect_to(:action => 'index')
+
     else
 
+      begin
+        RestClient.get @url.origin
 
-      exist = Url.find_by origin: @url.origin
+        exist = Url.find_by origin: @url.origin
 
-      if exist == nil
+        if exist == nil
 
-        if @url.redirect == nil
-          @url.redirect = SecureRandom.hex(4)
-        end
+          if @url.redirect == nil
+            @url.redirect = SecureRandom.hex(4)
+          end
 
-        if @url.save
+          if @url.save
             p @url.redirect
             flash[:success] = '成功產生網址 http://little.tw/' + @url.redirect
             redirect_to(:action => 'index')
+          end
+
+
+        else
+          p exist
+          flash[:notice] = '已存在短網址 http://little.tw/' + exist.redirect
+          redirect_to(:action => 'index')
+
         end
 
-
-      else
-        p exist
-        flash[:notice] = '已存在短網址 http://little.tw/' + exist.redirect
+      rescue SocketError
+        flash[:error] = '您所輸入的 url 可能有些問題'
         redirect_to(:action => 'index')
-
       end
+
+
+
 
 
     end
