@@ -1,9 +1,8 @@
 class UsersController < ApplicationController
 
-
+  before_action :auth, :only => :index
 
   def index
-    @user = User.find(params[:id])
   end
 
 
@@ -17,12 +16,14 @@ class UsersController < ApplicationController
 
     if @user.save
       p "success create user"
-      redirect_to @user
+      redirect_to '/user/login'
     else
       render 'new'
     end
 
   end
+
+
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
