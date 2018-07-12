@@ -3,6 +3,8 @@ class UsersController < ApplicationController
   before_action :auth, :only => :index
 
   def index
+    @url = Url.new
+    @url_list = Url.all
   end
 
 

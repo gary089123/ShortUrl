@@ -8,17 +8,19 @@ class UrlsController < ApplicationController
   end
 
   def create
+    p "------"
+    p request.referer
 
     @url = Url.new(url_params)
 
     if @url.origin == ""
       flash[:error] = '請填入要轉址的url'
-      redirect_to(:action => 'index')
+      redirect_back(fallback_location: root_path)
 
     elsif ! (@url.origin =~ /^https?:\/\/(.*)/)
 
       flash[:error] = ' 錯誤url格式'
-      redirect_to(:action => 'index')
+      redirect_back(fallback_location: root_path)
 
     else
 
@@ -36,20 +38,20 @@ class UrlsController < ApplicationController
           if @url.save
             p @url.redirect
             flash[:success] = '成功產生網址 http://little.tw/' + @url.redirect
-            redirect_to(:action => 'index')
+            redirect_back(fallback_location: root_path)
           end
 
 
         else
           p exist
           flash[:notice] = '已存在短網址 http://little.tw/' + exist.redirect
-          redirect_to(:action => 'index')
+          redirect_back(fallback_location: root_path)
 
         end
 
       rescue SocketError
         flash[:error] = '您所輸入的 url 可能有些問題'
-        redirect_to(:action => 'index')
+        redirect_back(fallback_location: root_path)
       end
 
 

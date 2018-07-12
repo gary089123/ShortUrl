@@ -7,8 +7,8 @@
 
 <body class="text-center">
 
-<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-  <%=flash_messages %>
+<div class="cover-container-wide d-flex w-100 h-100 p-3 mx-auto flex-column">
+  <%= flash_messages %>
   <header class="masthead mb-auto">
     <div class="inner">
       <h5 class="masthead-brand">[beta]&nbsp</h5>
@@ -22,9 +22,41 @@
     </div>
   </header>
 
-  <main role="main" class="inner cover">
-    <h3> <%= current_user.name%> </h3>
 
+  <main role="main" class="inner cover text-left">
+    <h3> Hi , <%= current_user.name %> </h3>
+    <div class="url-scroll">
+      <table class="table table-hover">
+        <tbody>
+        <% @url_list.each do |url| %>
+          <tr>
+            <td><%= url.id %></td>
+            <td>
+              <div class="btn-group">
+                <button class="btn btn-sm btn-light">設定</button>
+                <button class="btn btn-sm btn-success">分析</button>
+              </div>
+            </td>
+            <td>https://little.tw/<%= url.redirect %></td>
+            <td style="white-space:nowrap;"><a href="<%= url.origin %>"><%= url.origin %></a></td>
+          </tr>
+        <% end %>
+
+
+        </tbody>
+      </table>
+
+    </div>
+    <%= form_for @url, :url => {:controller => 'urls', :action => 'create'} do |f| %>
+
+      <div class="input-group">
+
+        <%= f.text_field :origin, :class => "form-control", :style => "text-align:center;", placeholder: "Example : https://url.little.tw" %>
+        <div class="input-group-append">
+          <%= f.submit '產生短網址', :class => 'btn btn-info ml-2' %>
+        </div>
+      </div>
+    <% end %>
 
 
   </main>

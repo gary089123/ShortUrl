@@ -42,6 +42,10 @@ body {
   max-width: 42em;
 }
 
+.cover-container-wide {
+    max-width: 60em;
+}
+
 
 /*
  * Header
@@ -103,4 +107,15 @@ body {
  */
 .mastfoot {
   color: rgba(255, 255, 255, .5);
+}
+
+
+/*
+    Url Managment
+ */
+
+.url-scroll {
+    height:350px;
+    overflow:auto;
+
 }
