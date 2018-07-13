@@ -7,5 +7,10 @@
       <first-sync>true</first-sync>
       <introspection-schemas>*:</introspection-schemas>
     </data-source>
+    <data-source name="Rails ShortUrl: test" uuid="f5bb8f95-9456-4d70-b18a-f2a2f7c36eca">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+      <auth-required>false</auth-required>
+      <first-sync>true</first-sync>
+    </data-source>
   </component>
 </project>

@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   def index
     @url = Url.new
-    @url_list = Url.all
+    @url_list = current_user.urls
   end
 
 

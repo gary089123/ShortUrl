@@ -28,9 +28,11 @@
     <div class="url-scroll">
       <table class="table table-hover">
         <tbody>
+        <% count = 0 %>
         <% @url_list.each do |url| %>
+          <% count += 1 %>
           <tr>
-            <td><%= url.id %></td>
+            <td><%= count %></td>
             <td>
               <div class="btn-group">
                 <button class="btn btn-sm btn-light">設定</button>
@@ -58,7 +60,7 @@
 
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
               <button type="button" class="btn btn-primary">Save changes</button>
             </div>
           </div>

@@ -12,6 +12,11 @@ class UrlsController < ApplicationController
     p request.referer
 
     @url = Url.new(url_params)
+    if log_in?
+      @url.user_id = session[:user_id]
+    else
+      @url.user_id = 0
+    end
 
     if @url.origin == ""
       flash[:error] = '請填入要轉址的url'
@@ -26,13 +31,17 @@ class UrlsController < ApplicationController
 
       begin
         RestClient.get @url.origin
-
-        exist = Url.find_by origin: @url.origin
+        exist = User.find(@url.user_id).urls.find_by origin: @url.origin
+        #exist = Url.find_by origin: @url.origin
 
         if exist == nil
 
           if @url.redirect == nil
-            @url.redirect = SecureRandom.hex(4)
+            rand_string = SecureRandom.hex(4)
+            while Url.exists?(:redirect => rand_string)
+              rand_string = SecureRandom.hex(4)
+            end
+            @url.redirect = rand_string
           end
 
           if @url.save
