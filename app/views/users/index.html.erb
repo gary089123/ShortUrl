@@ -32,14 +32,14 @@
         <% @url_list.each do |url| %>
           <% count += 1 %>
           <tr>
-            <td><%= count %></td>
+            <td><%= url.id %></td>
             <td>
               <div class="btn-group">
                 <button class="btn btn-sm btn-light">設定</button>
-                <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#chartModal">分析</button>
+                <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#chartModal" onclick="getchart(<%= url.id %>)">分析</button>
               </div>
             </td>
-            <td>https://little.tw/<%= url.redirect %></td>
+            <td><a href="http://little.tw/<%= url.redirect %>">http://little.tw/<%= url.redirect %></a></td>
             <td style="white-space:nowrap;"><a href="<%= url.origin %>"><%= url.origin %></a></td>
           </tr>
         <% end %>
@@ -47,21 +47,27 @@
 
         </tbody>
       </table>
-      <div class="modal fade" id="chartModal" tabindex="-1" role="dialog" aria-labelledby="chartModalTitle" aria-hidden="true">
+      <div class="modal fade modal-width" id="chartModal" tabindex="-1" role="dialog" aria-labelledby="chartModalTitle" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="chartModalTitle">圖表分析</h5>
+              <h3 class="modal-title text-black-50" id="chartModalTitle">圖表分析</h3>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body text-black-50" id="chartModalBody">
+              <h2 class="text-center" id="url">url</h2>
+              <div class="count text-center">
+                Total Clicks
+                <h3 id="click_count"> count </h3>
+              </div>
+              <canvas id="myChart" width="800" height="400"></canvas>
+
 
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
             </div>
           </div>
         </div>
@@ -92,6 +98,8 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+
 </body>
 </html>
 

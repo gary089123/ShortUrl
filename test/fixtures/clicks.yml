@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  time: 2018-07-14 01:43:07
+  referrer: MyString
+  browser: MyString
+  country: MyString
+  platform: MyString
+  url_id: 1
+
+two:
+  time: 2018-07-14 01:43:07
+  referrer: MyString
+  browser: MyString
+  country: MyString
+  platform: MyString
+  url_id: 1

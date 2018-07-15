@@ -1,5 +1,7 @@
 require 'securerandom'
 require 'rest-client'
+require 'browser'
+require 'geoip'
 
 class UrlsController < ApplicationController
 
@@ -63,21 +65,28 @@ class UrlsController < ApplicationController
         redirect_back(fallback_location: root_path)
       end
 
-
-
-
-
     end
-
-
   end
 
 
   def redirect
+    browser = Browser.new(request.env['HTTP_USER_AGENT'], accept_language: "en-us")
     redirect = params.fetch(:url)
     url = Url.find_by redirect: redirect
     if url != nil
+      click = Click.new
+      click.url_id = url.id
+      click.referrer = request.referrer
+      click.time = Time.now
+      click.platform = browser.platform.name
+      click.browser =  browser.name
+      country = GeoIP.new("#{Rails.root}/db/GeoIP.dat").country(request.remote_ip)[:country_name]
+      click.country = country
+      p "-----"
+      p request.referrer
+
       redirect_to url.origin
+      click.save
     else
       flash[:error] = '不存在的短網址'
       redirect_to(:action => 'index')

@@ -17,5 +17,6 @@
 //= require turbolinks
 //= require_tree .
 //= require copy
+//= require chart
 
 

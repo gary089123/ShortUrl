@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   post 'user/login',to: 'sessions#create'
   get 'user/logout', to: 'sessions#destroy'
 
+  get 'user/chartdata/:id',to: 'users#chartdata'
+
   root "urls#index"
   post '/url',to: 'urls#create'
   get '/:url' ,to: 'urls#redirect'

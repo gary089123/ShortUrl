@@ -49,6 +49,7 @@ GEM
       autoprefixer-rails (>= 6.0.3)
       popper_js (>= 1.12.9, < 2)
       sass (>= 3.5.2)
+    browser (2.5.3)
     builder (3.2.3)
     byebug (10.0.2)
     capybara (2.18.0)
@@ -74,6 +75,7 @@ GEM
     erubi (1.7.1)
     execjs (2.7.0)
     ffi (1.9.25)
+    geoip (1.6.4)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     http-cookie (1.0.3)
@@ -204,9 +206,11 @@ PLATFORMS
 DEPENDENCIES
   bcrypt
   bootstrap (~> 4.1.1)
+  browser
   byebug
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
+  geoip
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
