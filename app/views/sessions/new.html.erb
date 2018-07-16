@@ -7,44 +7,34 @@
 
 <body class="text-center">
 
-<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-  <%=flash_messages %>
-  <header class="masthead mb-auto">
-    <div class="inner">
-      <h5 class="masthead-brand">[beta]&nbsp</h5>
-      <h3 class="masthead-brand">Little's ShortUrl</h3>
-
-      <nav class="nav nav-masthead justify-content-center">
-        <a class="nav-link active" href="#">短網址</a>
-        <a class="nav-link" href="#">說明</a>
-        <a class="nav-link" href="#">聯絡我</a>
-      </nav>
-    </div>
-  </header>
+<div class="cover-container-wide d-flex w-100 h-100 p-3 mx-auto flex-column">
+  <%= flash_messages %>
+  <%= render 'layouts/nav' %>
 
   <main role="main" class="inner cover">
     <h3> 登入 SignIn </h3>
 
+    <div class="form-width">
+      <%= form_for(:session, url: user_login_path) do |f| %>
+        <div class="form-group text-left">
+          <%= f.label :email, "電子信箱 Email" %>
+          <%= f.text_field :email, :class => "form-control" %>
+        </div>
 
-    <%= form_for(:session, url: user_login_path)  do |f| %>
-      <div class="form-group text-left">
-        <%= f.label :email,"電子信箱 Email" %>
-        <%= f.text_field :email, :class => "form-control" %>
-      </div>
+        <div class="form-group text-left">
+          <%= f.label :password, "密碼 Password" %>
+          <%= f.password_field :password, :class => "form-control" %>
+        </div>
 
-      <div class="form-group text-left">
-        <%= f.label :password,"密碼 Password" %>
-        <%= f.password_field :password, :class => "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.submit "登入 Login", class: "btn btn-primary" %>
-      </div>
-
-
-    <% end %>
+        <div class="form-group">
+          <%= f.submit "登入 Login", class: "btn btn-primary" %>
+          <a class="btn btn-secondary" href="/user/signup">註冊 Regis</a>
+        </div>
 
 
+      <% end %>
+
+    </div>
   </main>
 
   <footer class="mastfoot mt-auto">

@@ -7,25 +7,14 @@
 
 <body class="text-center">
 
-<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+<div class="cover-container-wide d-flex w-100 h-100 p-3 mx-auto flex-column">
   <%=flash_messages %>
-  <header class="masthead mb-auto">
-    <div class="inner">
-      <h5 class="masthead-brand">[beta]&nbsp</h5>
-      <h3 class="masthead-brand">Little's ShortUrl</h3>
-
-      <nav class="nav nav-masthead justify-content-center">
-        <a class="nav-link active" href="#">短網址</a>
-        <a class="nav-link" href="#">說明</a>
-        <a class="nav-link" href="#">聯絡我</a>
-      </nav>
-    </div>
-  </header>
+  <%= render 'layouts/nav' %>
 
   <main role="main" class="inner cover">
     <h3> 註冊 Signup </h3>
 
-
+    <div class="form-width">
     <%= form_for(@user ,url: user_signup_path)  do |f| %>
 
       <div class="form-group text-left" >
@@ -52,7 +41,7 @@
 
 
     <% end %>
-
+    </div>
 
   </main>
 

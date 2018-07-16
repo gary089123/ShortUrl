@@ -1,0 +1,26 @@
+<header class="masthead mb-auto">
+  <div class="inner">
+    <h5 class="masthead-brand">[beta]&nbsp</h5>
+    <h3 class="masthead-brand"><a href="/">Little's ShortUrl</a></h3>
+
+    <nav class="nav nav-masthead justify-content-center">
+      <% url = request.fullpath %>
+      <% if log_in? %>
+        <a class="nav-link" href="">說明</a>
+        <% if url != '/user' %>
+          <a class="nav-link" href="/user">個人短網址</a>
+        <% else %>
+          <a class="nav-link" href="">API</a>
+        <% end %>
+
+        <a class="nav-link" href="/user/logout">登出</a>
+      <% else %>
+        <% if url != '/user/login' %>
+          <a class="nav-link" href="/user/login">登入</a>
+        <% end %>
+      <% end %>
+
+
+    </nav>
+  </div>
+</header>
