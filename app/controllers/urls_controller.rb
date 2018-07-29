@@ -48,14 +48,14 @@ class UrlsController < ApplicationController
 
           if @url.save
             p @url.redirect
-            flash[:success] = '成功產生網址 http://little.tw/' + @url.redirect
+            flash[:success] = '成功產生網址 https://little.tw/' + @url.redirect
             redirect_back(fallback_location: root_path)
           end
 
 
         else
           p exist
-          flash[:notice] = '已存在短網址 http://little.tw/' + exist.redirect
+          flash[:notice] = '已存在短網址 https://little.tw/' + exist.redirect
           redirect_back(fallback_location: root_path)
 
         end
