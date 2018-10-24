@@ -2,6 +2,7 @@ require 'securerandom'
 require 'rest-client'
 require 'browser'
 require 'geoip'
+require "addressable/uri"
 
 class UrlsController < ApplicationController
 
@@ -19,6 +20,9 @@ class UrlsController < ApplicationController
     else
       @url.user_id = 0
     end
+
+    uri = Addressable::URI.parse(@url.origin)
+    @url.origin = String(uri.normalize())
 
     if @url.origin == ""
       flash[:error] = '請填入要轉址的url'
