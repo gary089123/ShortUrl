@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
   def index
     @url = Url.new
+    @track= Track.new
     @url_list = current_user.urls
   end
 

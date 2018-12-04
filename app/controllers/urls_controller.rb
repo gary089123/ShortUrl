@@ -98,6 +98,18 @@ class UrlsController < ApplicationController
 
   end
 
+  def chartdata
+    url = Url.find(params.fetch(:id))
+    clicks = url.clicks
+    time=[]
+    clicks.each do |click|
+      time << click.time
+    end
+    j_data = { origin:url.origin , redirect:url.redirect , count:clicks.length , time:time}
+    render json: j_data, status: status
+
+  end
+
 
   private
 

@@ -14,4 +14,7 @@ Rails.application.routes.draw do
   root "urls#index"
   post '/url',to: 'urls#create'
   get '/:url' ,to: 'urls#redirect'
+  get '/:url/a', to: 'urls#index'
+
+  post '/track/add', to: 'tracks#add'
 end

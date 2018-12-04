@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180714055200) do
+ActiveRecord::Schema.define(version: 20181026085801) do
 
   create_table "clicks", force: :cascade do |t|
     t.datetime "time"
@@ -23,6 +23,15 @@ ActiveRecord::Schema.define(version: 20180714055200) do
     t.datetime "updated_at", null: false
     t.string "ip"
     t.index ["url_id"], name: "index_clicks_on_url_id"
+  end
+
+  create_table "tracks", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "url_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["url_id"], name: "index_tracks_on_url_id"
+    t.index ["user_id"], name: "index_tracks_on_user_id"
   end
 
   create_table "urls", force: :cascade do |t|

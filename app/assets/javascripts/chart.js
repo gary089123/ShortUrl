@@ -47,7 +47,7 @@ function getchart(id) {
             jdata = JSON.parse(this.response);
             console.log(jdata);
             console.log($("#chartModalTitle"));
-            $("#url").text("http://little.tw/" + jdata["redirect"]);
+            $("#url").text("https://little.tw/" + jdata["redirect"]);
             $("#click_count").text(jdata["count"]);
             console.log(jdata["time"]);
             var timelabel = [];
