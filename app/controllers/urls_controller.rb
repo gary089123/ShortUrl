@@ -64,8 +64,12 @@ class UrlsController < ApplicationController
 
         end
 
-      rescue
+      rescue SocketError
         flash[:error] = '您所輸入的 url 可能有些問題'
+        redirect_back(fallback_location: root_path)
+
+      rescue InvalidAddressError
+        flash[:error] = '您所輸入的 url 格式錯誤'
         redirect_back(fallback_location: root_path)
       end
 
