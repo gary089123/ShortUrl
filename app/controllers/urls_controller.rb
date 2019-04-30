@@ -64,7 +64,7 @@ class UrlsController < ApplicationController
 
         end
 
-      rescue SocketError
+      rescue
         flash[:error] = '您所輸入的 url 可能有些問題'
         redirect_back(fallback_location: root_path)
       end
